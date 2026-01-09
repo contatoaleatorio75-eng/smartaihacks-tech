@@ -1,0 +1,44 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import AdPlaceholder from '../../components/AdPlaceholder.astro';
+
+export async function getStaticPaths() {
+	const posts = await getCollection('blog');
+	return posts.map((post) => ({
+		params: { slug: post.slug },
+		props: { post },
+	}));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+---
+
+<Layout title={post.data.title} description={post.data.description}>
+	<article class="max-w-4xl mx-auto">
+		<div class="mb-8 text-center">
+			<div class="text-primary font-medium mb-2">{post.data.pubDate.toLocaleDateString('en-US', { dateStyle: 'long' })}</div>
+			<h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">{post.data.title}</h1>
+			<div class="flex items-center justify-center gap-2">
+				<img src="/images/logo.png" class="w-8 h-8 rounded-full bg-white p-1" alt="Author" />
+				<span class="text-gray-400">By {post.data.author}</span>
+			</div>
+		</div>
+
+		{post.data.image && (
+			<div class="rounded-2xl overflow-hidden mb-12 border border-gray-800 shadow-2xl">
+				<img src={post.data.image} alt={post.data.title} class="w-full object-cover max-h-[500px]" />
+			</div>
+		)}
+
+		<AdPlaceholder slotId="ARTICLE_TOP_SLOT" className="my-8" />
+
+		<!-- Typography Styles for Markdown Content -->
+		<div class="prose prose-lg prose-invert mx-auto prose-headings:text-white prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-secondary">
+			<Content />
+		</div>
+
+		<AdPlaceholder slotId="ARTICLE_BOTTOM_SLOT" className="my-12" />
+	</article>
+</Layout>

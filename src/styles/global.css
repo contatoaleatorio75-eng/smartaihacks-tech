@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #007BFF;
+    --color-secondary: #00FFFF;
+    --color-dark: #121212;
+    --color-darker: #0a0a0a;
+    --color-surface: #1e1e1e;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--color-dark);
+    color: #ffffff;
+    font-family: 'Inter', sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
