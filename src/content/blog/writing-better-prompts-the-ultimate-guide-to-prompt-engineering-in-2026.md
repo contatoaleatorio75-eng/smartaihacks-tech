@@ -1,5 +1,5 @@
 ---
-title: 'Article 8'
+title: 'Writing Better Prompts: The Ultimate Guide to Prompt Engineering in 2026'
 description: "Vamos para o **Artigo #8**. Este é o \"coração\" do seu blog, pois ensina a habilidade mais importante de 2026: **Prompt Engineering**. É um artigo que ..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

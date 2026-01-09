@@ -1,5 +1,5 @@
 ---
-title: 'Article 9'
+title: 'AI for Podcasters: How to Clean Audio and Generate Transcripts in Seconds'
 description: "Vamos para o **Artigo #9**. Como o seu blog **smartaihacks.tech** é focado em ferramentas e truques de IA para produtividade e criadores, este artigo ..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

@@ -1,5 +1,5 @@
 ---
-title: 'Article 4'
+title: 'How to Build a Custom GPT for Your Daily Business Tasks'
 description: "**Artigo #4: Custom GPTs for Business**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

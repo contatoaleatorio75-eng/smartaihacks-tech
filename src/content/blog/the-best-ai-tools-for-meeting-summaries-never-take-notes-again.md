@@ -1,5 +1,5 @@
 ---
-title: 'Article 3'
+title: 'The Best AI Tools for Meeting Summaries: Never Take Notes Again'
 description: "**Artigo #3: AI for Meetings**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

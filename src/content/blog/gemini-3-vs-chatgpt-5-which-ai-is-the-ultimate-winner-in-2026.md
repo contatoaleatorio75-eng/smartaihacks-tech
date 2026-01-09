@@ -1,5 +1,5 @@
 ---
-title: 'Article 12'
+title: 'Gemini 3 vs. ChatGPT-5: Which AI is the Ultimate Winner in 2026?'
 description: "**Artigo #12: Gemini vs ChatGPT 2026**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

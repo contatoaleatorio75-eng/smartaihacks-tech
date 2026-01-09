@@ -1,5 +1,5 @@
 ---
-title: 'Article 14'
+title: 'The Rise of AI Agents: What to Expect for the Rest of 2026'
 description: "**Artigo #14: The Rise of AI Agents**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

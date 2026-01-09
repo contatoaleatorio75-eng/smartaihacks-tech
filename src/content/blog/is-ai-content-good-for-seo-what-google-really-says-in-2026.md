@@ -1,5 +1,5 @@
 ---
-title: 'Article 10'
+title: 'Is AI Content Good for SEO? What Google Really Says in 2026'
 description: "**Artigo #10: AI Content and SEO**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

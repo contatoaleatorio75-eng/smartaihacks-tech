@@ -1,5 +1,5 @@
 ---
-title: 'Article 1'
+title: '10 Essential AI Hacks to Supercharge Your Workflow in 2026'
 description: "**Artigo #1: Essential AI Hacks**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

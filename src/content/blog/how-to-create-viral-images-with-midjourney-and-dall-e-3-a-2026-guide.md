@@ -1,5 +1,5 @@
 ---
-title: 'Article 7'
+title: 'How to Create Viral Images with Midjourney and DALL-E 3: A 2026 Guide'
 description: "Vamos para o **Artigo #7**. Este é um guia completo sobre **Criação de Imagens**, focado nas duas maiores ferramentas do mercado: **Midjourney** e **D..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

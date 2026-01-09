@@ -1,5 +1,5 @@
 ---
-title: 'Article 6'
+title: 'Top 5 AI Video Generators for YouTube Shorts and TikTok in 2026'
 description: "Vamos para o **Artigo #6**. Agora entramos na categoria de **Criação de Conteúdo**, que é excelente para gerar tráfego orgânico rápido, já que muitas ..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

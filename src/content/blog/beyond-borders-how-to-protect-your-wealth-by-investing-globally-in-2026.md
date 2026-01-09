@@ -1,5 +1,5 @@
 ---
-title: 'Article 15'
+title: 'Beyond Borders: How to Protect Your Wealth by Investing Globally in 2026'
 description: "**Artigo #15: Global Investing & Mindset**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

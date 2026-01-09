@@ -1,5 +1,5 @@
 ---
-title: 'Article 13'
+title: 'Inflation vs. Your Investments: Who is Truly Winning the Battle?'
 description: "**Artigo #13: Inflation vs. Investments**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'

@@ -1,5 +1,5 @@
 ---
-title: 'Article 5'
+title: 'AI-Powered Time Management: Tools and Strategies That Actually Work in 2026'
 description: "**Artigo #5: AI-Powered Time Management**..."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
