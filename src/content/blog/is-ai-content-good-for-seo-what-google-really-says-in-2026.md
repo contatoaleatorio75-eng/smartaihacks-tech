@@ -1,14 +1,10 @@
 ---
 title: 'Is AI Content Good for SEO? What Google Really Says in 2026'
-description: "Interesting financial insights powered by AI."
+description: "As we navigate through 2026, the debate over AI-generated content and its impact on search rankings has finally settled."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
-image: '/images/blog-placeholder.jpg'
+image: '/images/blog/article-10.jpg'
 ---
-
-**Artigo #10: AI Content and SEO**
-
-**Title:** Is AI Content Good for SEO? What Google Really Says in 2026
 
 **Introduction** As we navigate through 2026, the debate over AI-generated content and its impact on search rankings has finally settled. For a long time, creators feared that using Artificial Intelligence would lead to shadowbans or manual penalties from Google. However, the reality is much more nuanced. Google’s algorithms have evolved to prioritize "People-First Content," regardless of whether a human or a machine held the "pen." In this article, we clarify Google's current stance and how you can use AI to boost your SEO without risking your rankings.
 

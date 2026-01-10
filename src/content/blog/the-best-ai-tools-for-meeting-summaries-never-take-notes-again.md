@@ -1,14 +1,10 @@
 ---
 title: 'The Best AI Tools for Meeting Summaries: Never Take Notes Again'
-description: "Interesting financial insights powered by AI."
+description: "We have all been there: a long, productive meeting ends, and suddenly no one is quite sure who is responsible for what."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
-image: '/images/blog-placeholder.jpg'
+image: '/images/blog/article-3.jpg'
 ---
-
-**Artigo #3: AI for Meetings**
-
-**Title:** The Best AI Tools for Meeting Summaries: Never Take Notes Again
 
 **Introduction** We have all been there: a long, productive meeting ends, and suddenly no one is quite sure who is responsible for what. Traditionally, "taking minutes" was a tedious chore that distracted participants from the conversation. In 2026, AI-powered meeting assistants have changed the game. These tools don't just record audio; they understand context, identify speakers, and extract actionable insights. Here is why you should let AI handle your next meeting's documentation.
 
