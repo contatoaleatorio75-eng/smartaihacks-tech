@@ -3,7 +3,7 @@ title: 'Inflation vs. Your Investments: Who is Truly Winning the Battle?'
 description: "In 2026, the global economy is more interconnected and volatile than ever. Understanding real vs nominal returns is key."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
-image: '/images/blog/article-13.jpg'
+image: '/images/blog/article-7.jpg'
 ---
 
 **Introduction** In 2026, the global economy is more interconnected and volatile than ever. Using AI to understand real vs. nominal returns is key.
