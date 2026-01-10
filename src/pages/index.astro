@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
-import AdPlaceholder from '../components/AdPlaceholder.astro';
 import { getCollection } from 'astro:content';
 
 const posts = (await getCollection('blog')).sort(
@@ -19,7 +18,7 @@ const posts = (await getCollection('blog')).sort(
 		</p>
 	</section>
 
-	<AdPlaceholder slotId="HEADER_SLOT" />
+
 
 	<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 		{posts.map((post) => (
@@ -33,5 +32,5 @@ const posts = (await getCollection('blog')).sort(
         </div>
     )}
 
-	<AdPlaceholder slotId="FOOTER_SLOT" />
+
 </Layout>

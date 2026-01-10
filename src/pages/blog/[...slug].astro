@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import AdPlaceholder from '../../components/AdPlaceholder.astro';
+
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog');
@@ -32,13 +32,13 @@ const { Content } = await post.render();
 			</div>
 		)}
 
-		<AdPlaceholder slotId="ARTICLE_TOP_SLOT" className="my-8" />
+
 
 		<!-- Typography Styles for Markdown Content -->
 		<div class="prose prose-lg prose-invert mx-auto prose-headings:text-white prose-a:text-primary prose-a:no-underline hover:prose-a:underline prose-strong:text-secondary">
 			<Content />
 		</div>
 
-		<AdPlaceholder slotId="ARTICLE_BOTTOM_SLOT" className="my-12" />
+
 	</article>
 </Layout>
