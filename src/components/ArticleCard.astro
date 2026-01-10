@@ -8,7 +8,7 @@ interface Props {
 const { post } = Astro.props;
 ---
 
-<article class="bg-surface rounded-lg overflow-hidden border border-gray-800 hover:border-primary transition-all hover:shadow-[0_0_15px_rgba(0,123,255,0.3)] group">
+<article class="bg-surface rounded-lg overflow-hidden border border-gray-800 hover:border-primary transition-all hover:shadow-[0_0_20px_rgba(99,102,241,0.2)] group">
 	<a href={`/blog/${post.slug}`}>
 		<div class="aspect-video overflow-hidden">
 			<img 
@@ -21,14 +21,20 @@ const { post } = Astro.props;
 			<div class="flex items-center gap-2 text-sm text-gray-400 mb-3">
 				<span>{post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
 				<span>•</span>
-				<span class="text-primary">{post.data.author}</span>
+				<span class="text-primary font-medium">{post.data.author}</span>
 			</div>
 			<h2 class="text-xl font-bold mb-2 text-white group-hover:text-primary transition-colors line-clamp-2">
 				{post.data.title}
 			</h2>
-			<p class="text-gray-400 line-clamp-3 text-sm">
+			<p class="text-gray-400 line-clamp-3 text-sm mb-4">
 				{post.data.description}
 			</p>
+			<div class="flex items-center text-accent font-bold text-sm group-hover:translate-x-1 transition-transform">
+				Read More 
+				<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+				</svg>
+			</div>
 		</div>
 	</a>
 </article>

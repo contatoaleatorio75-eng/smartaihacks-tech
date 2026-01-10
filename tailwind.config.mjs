@@ -4,11 +4,12 @@ export default {
     theme: {
         extend: {
             colors: {
-                primary: '#007BFF', // Electric Blue
-                secondary: '#00FFFF', // Cyan Neon (approx)
-                dark: '#121212', // Dark Grey/Black
-                darker: '#0a0a0a',
-                surface: '#1e1e1e',
+                primary: '#6366f1', // Indigo 500 - Trust/Tech
+                secondary: '#8b5cf6', // Violet 500 - AI/Mystery
+                accent: '#06b6d4', // Cyan 500 - High Contrast CTA
+                dark: '#0f172a', // Slate 900 - Rich Dark
+                darker: '#020617', // Slate 950 - Deepest Dark
+                surface: '#1e293b', // Slate 800 - Cards/Sections
             },
             fontFamily: {
                 sans: ['Inter', 'sans-serif'],
