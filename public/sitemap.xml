@@ -3,6 +3,7 @@
   <url>
     <loc>https://smartaihacks.tech/</loc>
     <lastmod>2026-01-10</lastmod>
+    <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
@@ -13,86 +14,76 @@
   <url>
     <loc>https://smartaihacks.tech/contact</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
   </url>
   <url>
     <loc>https://smartaihacks.tech/privacy</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.8</priority>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://smartaihacks.tech/blog</loc>
+    <lastmod>2026-01-10</lastmod>
+    <priority>0.9</priority>
   </url>
   <url>
     <loc>https://smartaihacks.tech/blog/10-essential-ai-hacks-to-supercharge-your-workflow-in-2026</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/ai-for-podcasters-how-to-clean-audio-and-generate-transcripts-in-seconds</loc>
-    <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/ai-powered-time-management-tools-and-strategies-that-actually-work-in-2026</loc>
-    <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/beyond-borders-how-to-protect-your-wealth-by-investing-globally-in-2026</loc>
-    <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://smartaihacks.tech/blog/gemini-3-vs-chatgpt-5-which-ai-is-the-ultimate-winner-in-2026</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://smartaihacks.tech/blog/how-to-automate-your-monthly-financial-reports-using-ai-and-spreadsheets</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://smartaihacks.tech/blog/how-to-build-a-custom-gpt-for-your-daily-business-tasks</loc>
+    <loc>https://smartaihacks.tech/blog/beyond-borders-how-to-protect-your-wealth-by-investing-globally-in-2026</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/how-to-create-viral-images-with-midjourney-and-dall-e-3-a-2026-guide</loc>
-    <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://smartaihacks.tech/blog/inflation-vs-your-investments-who-is-truly-winning-the-battle</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/is-ai-content-good-for-seo-what-google-really-says-in-2026</loc>
-    <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
+   <url>
     <loc>https://smartaihacks.tech/blog/passive-income-secrets-how-to-earn-rent-without-owning-physical-property</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/the-best-ai-tools-for-meeting-summaries-never-take-notes-again</loc>
+   <url>
+    <loc>https://smartaihacks.tech/blog/is-ai-content-good-for-seo-what-google-really-says-in-2026</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/the-rise-of-ai-agents-what-to-expect-for-the-rest-of-2026</loc>
+   <url>
+    <loc>https://smartaihacks.tech/blog/ai-for-podcasters-how-to-clean-audio-and-generate-transcripts-in-seconds</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://smartaihacks.tech/blog/top-5-ai-video-generators-for-youtube-shorts-and-tiktok-in-2026</loc>
-    <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
-  </url>
-  <url>
+   <url>
     <loc>https://smartaihacks.tech/blog/writing-better-prompts-the-ultimate-guide-to-prompt-engineering-in-2026</loc>
     <lastmod>2026-01-10</lastmod>
-    <priority>0.7</priority>
+  </url>
+   <url>
+    <loc>https://smartaihacks.tech/blog/how-to-create-viral-images-with-midjourney-and-dall-e-3-a-2026-guide</loc>
+    <lastmod>2026-01-10</lastmod>
+  </url>
+   <url>
+    <loc>https://smartaihacks.tech/blog/top-5-ai-video-generators-for-youtube-shorts-and-tiktok-in-2026</loc>
+    <lastmod>2026-01-10</lastmod>
+  </url>
+   <url>
+    <loc>https://smartaihacks.tech/blog/ai-powered-time-management-tools-and-strategies-that-actually-work-in-2026</loc>
+    <lastmod>2026-01-10</lastmod>
+  </url>
+   <url>
+    <loc>https://smartaihacks.tech/blog/how-to-build-a-custom-gpt-for-your-daily-business-tasks</loc>
+    <lastmod>2026-01-10</lastmod>
+  </url>
+   <url>
+    <loc>https://smartaihacks.tech/blog/the-best-ai-tools-for-meeting-summaries-never-take-notes-again</loc>
+    <lastmod>2026-01-10</lastmod>
+  </url>
+   <url>
+    <loc>https://smartaihacks.tech/blog/the-rise-of-ai-agents-what-to-expect-for-the-rest-of-2026</loc>
+    <lastmod>2026-01-10</lastmod>
   </url>
 </urlset>
