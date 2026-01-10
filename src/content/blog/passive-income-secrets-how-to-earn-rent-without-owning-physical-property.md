@@ -1,6 +1,6 @@
 ---
 title: 'Passive Income Secrets: How to Earn "Rent" Without Owning Physical Property'
-description: "**Artigo #11: Financial Hacks - FIIs**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'

@@ -1,6 +1,6 @@
 ---
 title: 'How to Automate Your Monthly Financial Reports Using AI and Spreadsheets'
-description: "**Artigo #2: AI for Finance**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'

@@ -1,6 +1,6 @@
 ---
 title: 'How to Build a Custom GPT for Your Daily Business Tasks'
-description: "**Artigo #4: Custom GPTs for Business**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'

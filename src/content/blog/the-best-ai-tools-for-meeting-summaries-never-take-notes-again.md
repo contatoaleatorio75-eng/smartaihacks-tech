@@ -1,6 +1,6 @@
 ---
 title: 'The Best AI Tools for Meeting Summaries: Never Take Notes Again'
-description: "**Artigo #3: AI for Meetings**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'

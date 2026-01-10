@@ -3,6 +3,7 @@ import path from 'path';
 import mammoth from 'mammoth';
 import TurndownService from 'turndown';
 import { fileURLToPath } from 'url';
+import crypto from 'crypto';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -11,6 +12,12 @@ const turndownService = new TurndownService();
 
 const inputDir = path.join(__dirname, '../public/downloads');
 const outputDir = path.join(__dirname, '../src/content/blog');
+const imagesDir = path.join(__dirname, '../public/images/blog');
+
+// Ensure images directory exists
+if (!fs.existsSync(imagesDir)) {
+    fs.mkdirSync(imagesDir, { recursive: true });
+}
 
 async function processFiles() {
     try {
@@ -24,7 +31,35 @@ async function processFiles() {
 
         for (const file of files) {
             const filePath = path.join(inputDir, file);
-            const result = await mammoth.convertToHtml({ path: filePath });
+
+            // Generate a consistent prefix for images for this file
+            const fileSlug = file.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+            let imageCounter = 0;
+            let mainImage = '/images/blog-placeholder.jpg';
+
+            const options = {
+                convertImage: mammoth.images.inline(function (element) {
+                    return element.read("base64").then(function (imageBuffer) {
+                        const extension = element.contentType.split('/')[1] || 'jpg';
+                        const imageName = `${fileSlug}-${++imageCounter}.${extension}`;
+                        const imagePath = path.join(imagesDir, imageName);
+
+                        // Write image to file
+                        fs.writeFileSync(imagePath, Buffer.from(imageBuffer, 'base64'));
+
+                        const publicPath = `/images/blog/${imageName}`;
+
+                        // Use the first image as the main image
+                        if (imageCounter === 1) {
+                            mainImage = publicPath;
+                        }
+
+                        return { src: publicPath };
+                    });
+                })
+            };
+
+            const result = await mammoth.convertToHtml({ path: filePath }, options);
             const html = result.value;
             const markdown = turndownService.turndown(html);
 
@@ -41,7 +76,7 @@ title: '${title}'
 description: "${description}"
 pubDate: ${new Date().toISOString().split('T')[0]}
 author: 'SmartAI Team'
-image: '/images/blog-placeholder.jpg'
+image: '${mainImage}'
 ---
 `;
 
@@ -49,7 +84,7 @@ image: '/images/blog-placeholder.jpg'
             const outputPath = path.join(outputDir, `${slug}.md`);
 
             fs.writeFileSync(outputPath, finalContent);
-            console.log(`Converted: ${file} -> ${slug}.md`);
+            console.log(`Converted: ${file} -> ${slug}.md (Images: ${imageCounter})`);
         }
     } catch (error) {
         console.error('Error processing files:', error);

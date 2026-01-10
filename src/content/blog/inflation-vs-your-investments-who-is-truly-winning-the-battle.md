@@ -1,6 +1,6 @@
 ---
 title: 'Inflation vs. Your Investments: Who is Truly Winning the Battle?'
-description: "**Artigo #13: Inflation vs. Investments**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'

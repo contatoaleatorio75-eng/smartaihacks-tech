@@ -1,6 +1,6 @@
 ---
 title: 'AI-Powered Time Management: Tools and Strategies That Actually Work in 2026'
-description: "**Artigo #5: AI-Powered Time Management**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'

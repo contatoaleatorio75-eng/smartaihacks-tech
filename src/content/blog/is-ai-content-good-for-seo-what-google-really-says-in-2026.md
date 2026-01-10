@@ -1,6 +1,6 @@
 ---
 title: 'Is AI Content Good for SEO? What Google Really Says in 2026'
-description: "**Artigo #10: AI Content and SEO**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'

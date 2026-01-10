@@ -1,6 +1,6 @@
 ---
 title: '10 Essential AI Hacks to Supercharge Your Workflow in 2026'
-description: "**Artigo #1: Essential AI Hacks**..."
+description: "Interesting financial insights powered by AI."
 pubDate: 2026-01-09
 author: 'SmartAI Team'
 image: '/images/blog-placeholder.jpg'
