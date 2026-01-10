@@ -1,0 +1,38 @@
+---
+---
+
+<div id="cookie-consent" class="fixed bottom-0 left-0 right-0 bg-darker border-t border-gray-800 p-4 transform translate-y-full transition-transform duration-300 z-50">
+  <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="text-gray-300 text-sm">
+      <p>
+        We use cookies to enhance your experience and show personalized ads. By continuing to visit this site you agree to our use of cookies.
+        <a href="/privacy" class="text-primary hover:underline">Learn more</a>.
+      </p>
+    </div>
+    <div class="flex gap-3">
+      <button id="accept-cookies" class="px-6 py-2 bg-primary hover:bg-blue-600 text-white rounded-lg font-medium transition-colors">
+        Accept
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  const cookieConsent = document.getElementById('cookie-consent');
+  const acceptBtn = document.getElementById('accept-cookies');
+
+  if (cookieConsent && acceptBtn) {
+    // Check if user has already accepted
+    if (!localStorage.getItem('cookieConsent')) {
+      // Show banner after a small delay
+      setTimeout(() => {
+        cookieConsent.classList.remove('translate-y-full');
+      }, 1000);
+    }
+
+    acceptBtn.addEventListener('click', () => {
+      localStorage.setItem('cookieConsent', 'true');
+      cookieConsent.classList.add('translate-y-full');
+    });
+  }
+</script>
