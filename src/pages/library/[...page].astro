@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import LibraryCard from '../../components/LibraryCard.astro';
+
+export async function getStaticPaths({ paginate }) {
+	const allPosts = await getCollection('blog');
+	
+	// Separate Welcome post
+	const welcomePost = allPosts.find(p => p.slug === 'welcome');
+	
+	// Filter out welcome post from the main list so we can pin it
+	const remainingPosts = allPosts
+		.filter(p => p.slug !== 'welcome' && p.data.pubDate <= new Date())
+		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+	return paginate(remainingPosts, { pageSize: 12, props: { welcomePost } });
+}
+
+const { page, welcomePost } = Astro.props;
+
+// Category definitions for navigation
+const categories = [
+	{ name: 'Prompt Engineering', tag: 'Prompt Engineering', icon: '⌨️' },
+	{ name: 'Tool Reviews', tag: 'Tool Reviews', icon: '🛠️' },
+	{ name: 'Productivity Workflows', tag: 'Workflows', icon: '🚀' },
+];
+---
+
+<Layout 
+	title="Library of Hacks - Knowledge Hub" 
+	description="Explore the Smart AI Hacks Library. Access all our tutorials, Prompt Engineering guides, and Artificial Intelligence tool reviews in one place."
+>
+	<div class="max-w-6xl mx-auto px-4 pb-20">
+		<!-- Hero Section -->
+		<section class="text-center py-16 mb-12 bg-gradient-to-b from-darker to-transparent rounded-3xl border border-gray-800">
+			<h1 class="text-4xl md:text-5xl font-extrabold mb-6">
+				Library of <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Hacks</span>
+			</h1>
+			<p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed px-6">
+				Welcome to our Knowledge Hub. Here you can find the complete archive of all articles, guides, and tutorials published on Smart AI Hacks. Master AI to skyrocket your productivity.
+			</p>
+		</section>
+
+		<!-- Categories Section -->
+		<div class="mb-20">
+			<h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+				<span class="text-primary">🔍</span> Explore by Category
+			</h2>
+			<div class="grid md:grid-cols-3 gap-6">
+				{categories.map((cat) => (
+					<div class="bg-surface p-8 rounded-2xl border border-gray-800 hover:border-gray-700 transition-all flex flex-col h-full">
+						<div class="text-4xl mb-4">{cat.icon}</div>
+						<h3 class="text-xl font-bold text-white mb-3">{cat.name}</h3>
+						<p class="text-gray-400 text-sm mb-6 flex-grow">
+							{cat.name === 'Prompt Engineering' && "Learn the art of talking to machines. Master ChatGPT, Claude, and more."}
+							{cat.name === 'Tool Reviews' && "We test the latest AI software so you know where to invest your time."}
+							{cat.name === 'Productivity Workflows' && "Practical guides on integrating AI into your routine and studies."}
+						</p>
+						<button class="text-primary font-bold text-sm hover:underline text-left opacity-50 cursor-not-allowed">
+							Category Archive (Coming Soon)
+						</button>
+					</div>
+				))}
+			</div>
+		</div>
+
+		<!-- Main Article List -->
+		<div class="space-y-12">
+			<h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+				<span class="text-primary">📅</span> All Articles (Chronological)
+			</h2>
+
+			<div class="grid lg:grid-cols-2 gap-6">
+				{/* Pinned Welcome Post - Only on Page 1 */}
+				{page.currentPage === 1 && welcomePost && (
+					<div class="lg:col-span-2 border-2 border-primary/30 rounded-2xl overflow-hidden">
+						<div class="bg-primary/10 px-4 py-1 text-xs font-bold text-primary uppercase inline-block rounded-br-lg">
+							Pinned
+						</div>
+						<LibraryCard post={welcomePost} />
+					</div>
+				)}
+
+				{page.data.map((post) => (
+					<LibraryCard post={post} />
+				))}
+			</div>
+
+			<!-- Pagination -->
+			<nav class="flex justify-center items-center gap-4 mt-16">
+				{page.url.prev ? (
+					<a href={page.url.prev} class="px-6 py-2 bg-darker border border-gray-800 rounded-lg text-white hover:border-primary transition-colors">
+						&larr; Previous
+					</a>
+				) : (
+					<span class="px-6 py-2 bg-darker border border-gray-900 rounded-lg text-gray-600 cursor-not-allowed">
+						&larr; Previous
+					</span>
+				)}
+				
+				<span class="text-gray-400 font-medium">
+					Page {page.currentPage} of {page.lastPage}
+				</span>
+
+				{page.url.next ? (
+					<a href={page.url.next} class="px-6 py-2 bg-darker border border-gray-800 rounded-lg text-white hover:border-primary transition-colors">
+						Next &rarr;
+					</a>
+				) : (
+					<span class="px-6 py-2 bg-darker border border-gray-900 rounded-lg text-gray-600 cursor-not-allowed">
+						Next &rarr;
+					</span>
+				)}
+			</nav>
+		</div>
+
+		<!-- Footer Note -->
+		<div class="mt-20 p-8 bg-darker rounded-2xl border border-gray-800 text-center">
+			<h3 class="text-xl font-bold text-white mb-4">Why follow our archives?</h3>
+			<p class="text-gray-400 max-w-2xl mx-auto mb-6">
+				AI changes fast, but the fundamentals of prompt logic and automation are the foundation for long-term success. Keeping up with our previous articles ensures you build a solid technical knowledge base.
+			</p>
+			<p class="text-sm text-primary font-medium">
+				Lost a specific hack? Use our archive list to find solutions for your daily challenges.
+			</p>
+		</div>
+	</div>
+</Layout>

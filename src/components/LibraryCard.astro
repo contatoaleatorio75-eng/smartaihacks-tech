@@ -1,0 +1,30 @@
+---
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+	post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+---
+
+<a href={`/blog/${post.slug}`} class="flex items-center gap-4 p-4 bg-surface rounded-xl border border-gray-800 hover:border-primary transition-all group">
+	<div class="w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border border-gray-700">
+		<img 
+			src={post.data.image || '/images/logo.png'} 
+			alt={post.data.title} 
+			class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+		/>
+	</div>
+	<div class="flex-grow min-w-0">
+		<div class="text-xs text-primary font-medium mb-1">
+			{post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+		</div>
+		<h3 class="text-lg font-bold text-white group-hover:text-primary transition-colors truncate">
+			{post.data.title}
+		</h3>
+		<p class="text-sm text-gray-400 line-clamp-2 mt-1">
+			{post.data.description}
+		</p>
+	</div>
+</a>
