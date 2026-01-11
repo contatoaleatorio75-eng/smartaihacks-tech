@@ -3,13 +3,17 @@ import Layout from '../layouts/Layout.astro';
 import ArticleCard from '../components/ArticleCard.astro';
 import { getCollection } from 'astro:content';
 
-const posts = (await getCollection('blog'))
+const allPosts = await getCollection('blog');
+const welcomePost = allPosts.find(p => p.slug === 'welcome');
+const otherPosts = allPosts
 	.filter(post => {
 		const today = new Date();
 		today.setHours(23, 59, 59, 999);
-		return post.data.pubDate <= today;
+		return post.slug !== 'welcome' && post.data.pubDate <= today;
 	})
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const posts = welcomePost ? [welcomePost, ...otherPosts] : otherPosts;
 ---
 
 <Layout title="Home">
