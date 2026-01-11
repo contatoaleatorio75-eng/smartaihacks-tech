@@ -5,19 +5,25 @@ import LibraryCard from '../../components/LibraryCard.astro';
 
 export async function getStaticPaths({ paginate }) {
 	const allPosts = await getCollection('blog');
+	const now = new Date();
 	
 	// Separate Welcome post
 	const welcomePost = allPosts.find(p => p.slug === 'welcome');
 	
-	// Filter out welcome post from the main list so we can pin it
-	const remainingPosts = allPosts
-		.filter(p => p.slug !== 'welcome' && p.data.pubDate <= new Date())
+	// Published posts
+	const publishedPosts = allPosts
+		.filter(p => p.slug !== 'welcome' && p.data.pubDate <= now)
 		.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
-	return paginate(remainingPosts, { pageSize: 12, props: { welcomePost } });
+	// Upcoming posts (scheduled for the future)
+	const upcomingPosts = allPosts
+		.filter(p => p.data.pubDate > now)
+		.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf());
+
+	return paginate(publishedPosts, { pageSize: 12, props: { welcomePost, upcomingPosts } });
 }
 
-const { page, welcomePost } = Astro.props;
+const { page, welcomePost, upcomingPosts } = Astro.props;
 
 // Category definitions for navigation
 const categories = [
@@ -42,10 +48,10 @@ const categories = [
 			</p>
 		</section>
 
-		<!-- Categories Section -->
+		<!-- Upcoming Hacks / Categories -->
 		<div class="mb-20">
 			<h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
-				<span class="text-primary">🔍</span> Explore by Category
+				<span class="text-primary">🚀</span> Upcoming & Themes
 			</h2>
 			<div class="grid md:grid-cols-3 gap-6">
 				{categories.map((cat) => (
@@ -57,9 +63,21 @@ const categories = [
 							{cat.name === 'Tool Reviews' && "We test the latest AI software so you know where to invest your time."}
 							{cat.name === 'Productivity Workflows' && "Practical guides on integrating AI into your routine and studies."}
 						</p>
-						<button class="text-primary font-bold text-sm hover:underline text-left opacity-50 cursor-not-allowed">
-							Category Archive (Coming Soon)
-						</button>
+						
+						{/* Show some upcoming posts as teaser if any match (roughly) */}
+						<div class="mt-4 border-t border-gray-800 pt-4">
+							<span class="text-xs font-bold text-primary uppercase tracking-wider">Scheduled:</span>
+							<ul class="mt-2 space-y-2">
+								{upcomingPosts.slice(0, 2).map(upcoming => (
+									<li class="text-xs text-gray-500 italic">
+										• {upcoming.data.title} ({upcoming.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })})
+									</li>
+								))}
+								{upcomingPosts.length === 0 && (
+									<li class="text-xs text-gray-600">New content being generated daily...</li>
+								)}
+							</ul>
+						</div>
 					</div>
 				))}
 			</div>

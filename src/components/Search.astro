@@ -1,0 +1,82 @@
+---
+---
+
+<div class="relative group">
+	<div class="flex items-center bg-surface border border-gray-800 rounded-full px-4 py-1.5 focus-within:border-primary transition-all">
+		<span class="text-gray-500 mr-2">🔍</span>
+		<input 
+			type="text" 
+			id="site-search" 
+			placeholder="Search hacks..." 
+			class="bg-transparent border-none text-sm text-white focus:outline-none w-32 md:w-48 placeholder:text-gray-600"
+		/>
+	</div>
+	
+	<!-- Search Results Dropdown -->
+	<div id="search-results" class="absolute top-full right-0 mt-2 w-72 md:w-96 bg-surface border border-gray-800 rounded-xl shadow-2xl hidden z-50 max-h-96 overflow-y-auto">
+		<div class="p-2 space-y-1" id="results-list">
+			<!-- Results injected here -->
+		</div>
+	</div>
+</div>
+
+<script>
+	// Simple client-side search logic
+	let searchIndex = [];
+	const searchInput = document.getElementById('site-search');
+	const searchResults = document.getElementById('search-results');
+	const resultsList = document.getElementById('results-list');
+
+	// Fetch search index on focus
+	searchInput?.addEventListener('focus', async () => {
+		if (searchIndex.length === 0) {
+			try {
+				const response = await fetch('/search-index.json');
+				searchIndex = await response.json();
+			} catch (e) {
+				console.error('Failed to load search index', e);
+			}
+		}
+	});
+
+	// Handle typing
+	searchInput?.addEventListener('input', (e) => {
+		const query = e.target.value.toLowerCase();
+		if (query.length < 2) {
+			searchResults?.classList.add('hidden');
+			return;
+		}
+
+		const matches = searchIndex
+			.filter(item => 
+				item.title.toLowerCase().includes(query) || 
+				item.description.toLowerCase().includes(query)
+			)
+			.slice(0, 5);
+
+		if (matches.length > 0) {
+			resultsList.innerHTML = matches.map(item => `
+				<a href="/blog/${item.slug}" class="flex items-start gap-3 p-3 hover:bg-darker rounded-lg transition-colors group">
+					<div class="w-10 h-10 rounded border border-gray-700 overflow-hidden flex-shrink-0">
+						<img src="${item.image}" alt="" class="w-full h-full object-cover">
+					</div>
+					<div>
+						<div class="text-xs font-bold text-white group-hover:text-primary transition-colors">${item.title}</div>
+						<div class="text-[10px] text-gray-500 line-clamp-1">${item.description}</div>
+					</div>
+				</a>
+			`).join('');
+			searchResults?.classList.remove('hidden');
+		} else {
+			resultsList.innerHTML = '<div class="p-3 text-xs text-gray-500 italic text-center">No hacks found...</div>';
+			searchResults?.classList.remove('hidden');
+		}
+	});
+
+	// Close on click outside
+	document.addEventListener('click', (e) => {
+		if (!searchInput?.contains(e.target) && !searchResults?.contains(e.target)) {
+			searchResults?.classList.add('hidden');
+		}
+	});
+</script>
