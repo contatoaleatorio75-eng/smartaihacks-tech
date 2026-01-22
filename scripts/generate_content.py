@@ -67,24 +67,35 @@ def generate_article():
         try:
             client = genai.Client(api_key=api_key)
             
-            # Try Primary Model
+            # Try Primary Model (Stable Flash)
             try:
-                print(f"Attempt {attempt+1}: Trying gemini-2.0-flash...")
-                response = client.models.generate_content(
-                    model='gemini-2.0-flash',
-                    contents=prompt
-                )
-                return response.text, topic
-            except Exception as e_primary:
-                print(f"Primary model (gemini-2.0-flash) failed: {e_primary}")
-                print(f"Attempt {attempt+1}: Switching to fallback model (gemini-1.5-flash)...")
-                
-                # Fallback Model
+                print(f"Attempt {attempt+1}: Trying gemini-1.5-flash...")
                 response = client.models.generate_content(
                     model='gemini-1.5-flash',
                     contents=prompt
                 )
                 return response.text, topic
+            except Exception as e_primary:
+                print(f"Primary model failed: {e_primary}")
+                
+                # Try Alternative Model (Flash-8b or Pro)
+                try:
+                    print(f"Attempt {attempt+1}: Switching to fallback model (gemini-1.5-flash-8b)...")
+                    response = client.models.generate_content(
+                        model='gemini-1.5-flash-8b',
+                        contents=prompt
+                    )
+                    return response.text, topic
+                except Exception as e_fallback:
+                    print(f"Fallback model failed: {e_fallback}")
+                    
+                    # Last Resort (Gemini 2.0 Flash - Experimental)
+                    print(f"Attempt {attempt+1}: Switching to last resort (gemini-2.0-flash)...")
+                    response = client.models.generate_content(
+                        model='gemini-2.0-flash',
+                        contents=prompt
+                    )
+                    return response.text, topic
 
         except Exception as e:
             msg = str(e)
