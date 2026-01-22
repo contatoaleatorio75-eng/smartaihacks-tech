@@ -3,7 +3,7 @@ import sys
 import time
 import random
 from datetime import datetime
-import google.generativeai as genai
+from google import genai
 
 # --- CONFIGURATION ---
 TOPICS = [
@@ -38,13 +38,22 @@ def get_api_key():
         return None
     return key
 
+def list_debug_models(client):
+    print("\n--- DEBUG: Listing Available Models ---")
+    try:
+        # Attempt to list models to see what the API key has access to
+        for model in client.models.list():
+            print(f"Found: {model.name}")
+        print("---------------------------------------")
+    except Exception as e:
+        print(f"Failed to list models: {e}")
+
 def generate_article():
     api_key = get_api_key()
     if not api_key:
         return None, "Error: API Key missing"
 
-    # Configure the SDK
-    genai.configure(api_key=api_key)
+    client = genai.Client(api_key=api_key)
 
     topic = random.choice(TOPICS)
     print(f"Generating article on: {topic}...")
@@ -66,39 +75,44 @@ def generate_article():
        - Do NOT wrap the entire output in markdown code blocks (```markdown). Just raw markdown.
     """
 
-    for attempt in range(3):
-        try:
-            # Try Primary Model (Stable Flash 1.5)
-            try:
-                print(f"Attempt {attempt+1}: Trying gemini-1.5-flash...")
-                model = genai.GenerativeModel('gemini-1.5-flash')
-                response = model.generate_content(prompt)
-                return response.text, topic
-            
-            except Exception as e_primary:
-                print(f"Primary model failed: {e_primary}")
-                
-                # Try Fallback (Gemini Pro)
-                try:
-                    print(f"Attempt {attempt+1}: Switching to fallback model (gemini-1.5-pro)...")
-                    model = genai.GenerativeModel('gemini-1.5-pro')
-                    response = model.generate_content(prompt)
-                    return response.text, topic
-                except Exception as e_fallback:
-                    print(f"Fallback model failed: {e_fallback}")
-                    # Re-raise to trigger the outer except block retry logic if needed
-                    raise e_fallback
+    # List of models to try in order of preference/stability
+    # We prioritize 1.5 Flash versions that are usually free/stable
+    model_candidates = [
+        "gemini-1.5-flash",
+        "gemini-1.5-flash-001",
+        "gemini-1.5-flash-002",
+        "gemini-1.5-flash-8b",
+        "gemini-1.5-pro",
+        "gemini-1.0-pro",
+        "gemini-2.0-flash" # Last resort due to quota issues seen
+    ]
 
+    for model_name in model_candidates:
+        print(f"Trying model: {model_name}...")
+        try:
+            response = client.models.generate_content(
+                model=model_name,
+                contents=prompt
+            )
+            print(f"Success with {model_name}!")
+            return response.text, topic
         except Exception as e:
             msg = str(e)
-            if "429" in msg or "RESOURCE_EXHAUSTED" in msg:
-                print(f"Quota exceeded, retrying in 60s... ({attempt+1}/3)")
-                time.sleep(60)
+            if "429" in msg or "RESOURCE" in msg:
+                print(f"Quota exceeded for {model_name}. Skipping to next...")
+            elif "404" in msg:
+                print(f"Model {model_name} not found (404). Skipping...")
             else:
-                print(f"Error generating content: {e}")
-                # Don't retry immediately on non-quota errors, or just let the loop continue
+                print(f"Error with {model_name}: {e}")
+            
+            # small delay before next attempt
+            time.sleep(1)
+
+    # If we get here, all models failed. Let's list what IS available to help debug.
+    print("\nAll attempts failed. Running debug info...")
+    list_debug_models(client)
     
-    return None, "Error: Failed after 3 attempts"
+    return None, "Error: All models failed"
 
 def save_file(content, title):
     if not content:
