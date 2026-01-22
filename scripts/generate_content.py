@@ -3,7 +3,7 @@ import sys
 import time
 import random
 from datetime import datetime
-from google import genai
+import google.generativeai as genai
 
 # --- CONFIGURATION ---
 TOPICS = [
@@ -43,6 +43,9 @@ def generate_article():
     if not api_key:
         return None, "Error: API Key missing"
 
+    # Configure the SDK
+    genai.configure(api_key=api_key)
+
     topic = random.choice(TOPICS)
     print(f"Generating article on: {topic}...")
 
@@ -65,37 +68,26 @@ def generate_article():
 
     for attempt in range(3):
         try:
-            client = genai.Client(api_key=api_key)
-            
-            # Try Primary Model (Stable Flash)
+            # Try Primary Model (Stable Flash 1.5)
             try:
                 print(f"Attempt {attempt+1}: Trying gemini-1.5-flash...")
-                response = client.models.generate_content(
-                    model='gemini-1.5-flash',
-                    contents=prompt
-                )
+                model = genai.GenerativeModel('gemini-1.5-flash')
+                response = model.generate_content(prompt)
                 return response.text, topic
+            
             except Exception as e_primary:
                 print(f"Primary model failed: {e_primary}")
                 
-                # Try Alternative Model (Flash-8b or Pro)
+                # Try Fallback (Gemini Pro)
                 try:
-                    print(f"Attempt {attempt+1}: Switching to fallback model (gemini-1.5-flash-8b)...")
-                    response = client.models.generate_content(
-                        model='gemini-1.5-flash-8b',
-                        contents=prompt
-                    )
+                    print(f"Attempt {attempt+1}: Switching to fallback model (gemini-1.5-pro)...")
+                    model = genai.GenerativeModel('gemini-1.5-pro')
+                    response = model.generate_content(prompt)
                     return response.text, topic
                 except Exception as e_fallback:
                     print(f"Fallback model failed: {e_fallback}")
-                    
-                    # Last Resort (Gemini 2.0 Flash - Experimental)
-                    print(f"Attempt {attempt+1}: Switching to last resort (gemini-2.0-flash)...")
-                    response = client.models.generate_content(
-                        model='gemini-2.0-flash',
-                        contents=prompt
-                    )
-                    return response.text, topic
+                    # Re-raise to trigger the outer except block retry logic if needed
+                    raise e_fallback
 
         except Exception as e:
             msg = str(e)
@@ -104,7 +96,7 @@ def generate_article():
                 time.sleep(60)
             else:
                 print(f"Error generating content: {e}")
-                return None, f"Error: {e}"
+                # Don't retry immediately on non-quota errors, or just let the loop continue
     
     return None, "Error: Failed after 3 attempts"
 
