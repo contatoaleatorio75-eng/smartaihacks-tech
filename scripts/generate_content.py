@@ -78,13 +78,13 @@ def generate_article():
     # List of models to try in order of preference/stability
     # We prioritize 1.5 Flash versions that are usually free/stable
     model_candidates = [
+        "gemini-2.0-flash", # Prioritize 2.0 Flash as it is most reliable currently
         "gemini-1.5-flash",
         "gemini-1.5-flash-001",
         "gemini-1.5-flash-002",
         "gemini-1.5-flash-8b",
         "gemini-1.5-pro",
-        "gemini-1.0-pro",
-        "gemini-2.0-flash" # Last resort due to quota issues seen
+        "gemini-1.0-pro"
     ]
 
     for model_name in model_candidates:
