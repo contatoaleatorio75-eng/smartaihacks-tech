@@ -1,0 +1,5 @@
+elevenlabs
+moviepy
+python-dotenv
+google-genai
+requests

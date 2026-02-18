@@ -9,7 +9,8 @@ const otherPosts = allPosts
 	.filter(post => {
 		const today = new Date();
 		today.setHours(23, 59, 59, 999);
-		return post.slug !== 'welcome' && post.data.pubDate <= today;
+		// Exclude library posts and welcome post
+		return post.slug !== 'welcome' && !post.id.startsWith('library/') && post.data.pubDate <= today;
 	})
 	.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 
